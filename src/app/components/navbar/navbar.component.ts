@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
-import {AuthService} from "../../services/auth/auth.service";
-import {ManagerAuthService} from "../../services/auth/manager/manager-auth.service";
-import {StudentAuthService} from "../../services/auth/student/student-auth.service";
-import {TeacherAuthService} from "../../services/auth/teacher/teacher-auth.service";
+import {RoleCheckerService} from "../../services/auth/role-checker/role-checker.service";
+import {JwtStorageService} from "../../services/jwt/jwt-storage.service";
+import {UserResponse} from "../../models/response/user-response";
 
 @Component({
   selector: 'app-navbar',
@@ -11,24 +10,23 @@ import {TeacherAuthService} from "../../services/auth/teacher/teacher-auth.servi
 })
 export class NavbarComponent {
 
-  isLoggedIn: boolean;
+  user: UserResponse;
+  isLoggedIn = false;
+  isManager = false;
+  isStudent = false;
+  isTeacher = false;
 
-  constructor(private authService: AuthService,
-              private managerAuthService: ManagerAuthService,
-              private studentAuthService: StudentAuthService,
-              private teacherAuthService: TeacherAuthService
-  ) {
-    this.isLoggedIn = authService.isLoggedIn();
+  constructor(private roleCheckerService: RoleCheckerService, private jwtStorageService: JwtStorageService) {
+    this.isLoggedIn = roleCheckerService.isLoggedIn();
+    this.isManager = roleCheckerService.isManager();
+    this.isStudent = roleCheckerService.isStudent();
+    this.isTeacher = roleCheckerService.isTeacher()
+    this.user = jwtStorageService.getUser()
   }
 
   logout(): void {
-    if(this.authService.isManager()) {
-      this.managerAuthService.logout()
-    } else if(this.authService.isStudent()) {
-      this.studentAuthService.logout();
-    } else if(this.authService.isTeacher()) {
-      this.teacherAuthService.logout()
-    }
+    this.jwtStorageService.removeUser()
+    window.location.reload()
   }
 
 }

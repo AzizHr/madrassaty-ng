@@ -1,19 +1,19 @@
 import { Injectable } from '@angular/core';
-import {CanActivate, Router} from '@angular/router';
-import {AuthService} from "../services/auth/auth.service";
+import {CanActivate} from '@angular/router';
+import {RoleCheckerService} from "../services/auth/role-checker/role-checker.service";
 
 @Injectable({
   providedIn: 'root'
 })
 export class TeacherAuthGuard implements CanActivate {
 
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(private roleCheckerService: RoleCheckerService) {}
 
   canActivate(): boolean {
-    if (this.authService.isLoggedIn() && this.authService.isTeacher()) {
+    if (this.roleCheckerService.isTeacher()) {
       return true;
     } else {
-      this.router.navigateByUrl('/teacher/login');
+      window.history.back();
       return false;
     }
   }

@@ -1,5 +1,17 @@
-import {AuthState} from "./auth.state";
+import {ClassState} from "./class.state";
+import {SchoolState} from "./school.state";
+import {SpecialtyState} from "./specialty.state";
+import {StudentState} from "./student.state";
+import {SubjectState} from "./subject.state";
+import {TeacherState} from "./teacher.state";
+import {AbsenceState} from "./absence.state";
 
 export interface AppState {
-    auth: AuthState
+  classes: ClassState,
+  school: SchoolState,
+  specialties: SpecialtyState,
+  students: StudentState,
+  teachers: TeacherState,
+  subjects: SubjectState,
+  absences: AbsenceState
 }

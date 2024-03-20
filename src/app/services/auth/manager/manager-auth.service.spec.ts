@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 
 import { ManagerAuthService } from './manager-auth.service';
 
-describe('ManagerService', () => {
+describe('ManagerAuthService', () => {
   let service: ManagerAuthService;
 
   beforeEach(() => {

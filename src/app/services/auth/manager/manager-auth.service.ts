@@ -1,27 +1,26 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {AuthRequest} from "../../../models/auth-request";
-import {AuthResponse} from "../../../models/auth-response";
 import {Observable} from "rxjs";
-import {ManagerRegisterRequest} from "../../../models/manager-register-request";
 import {Router} from "@angular/router";
-import {AuthService} from "../auth.service";
+import {LoginRequest} from "../../../models/request/login-request";
+import {AuthResponse} from "../../../models/response/auth-response.models";
+import {ManagerRegisterRequest} from "../../../models/request/manager-register-request";
 
 @Injectable({
   providedIn: 'root'
 })
 export class ManagerAuthService {
 
-  private MANAGER_AUTH_API: string = 'http://localhost:8080/api/auth/manager';
+  private MANAGER_AUTH_API: string = 'http://localhost:8080/api/manager';
   private httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
 
-  constructor(private http: HttpClient, private router: Router, private authService: AuthService) {}
+  constructor(private http: HttpClient, private router: Router) {}
 
-  public authenticate(authRequest: AuthRequest): Observable<AuthResponse> {
+  public authenticate(loginRequest: LoginRequest): Observable<AuthResponse> {
     return this.http.post<AuthResponse>(
-      `${this.MANAGER_AUTH_API}/login`, authRequest, this.httpOptions
+      `${this.MANAGER_AUTH_API}/login`, loginRequest, this.httpOptions
     )
   }
 
@@ -33,7 +32,6 @@ export class ManagerAuthService {
 
   logout(): void {
     localStorage.removeItem('user');
-    localStorage.removeItem('token');
     window.location.reload();
     this.router.navigateByUrl('/manager/login');
   }
