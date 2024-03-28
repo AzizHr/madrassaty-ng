@@ -5,8 +5,8 @@ import {Router} from "@angular/router";
 import {LoginRequest} from "../../../models/request/login-request";
 import {AuthResponse} from "../../../models/response/auth-response.models";
 import {JwtStorageService} from "../../jwt/jwt-storage.service";
-import {ManagerRegisterRequest} from "../../../models/request/manager-register-request";
 import {StudentRegisterRequest} from "../../../models/request/student-register-request";
+import {StudentResponse} from "../../../models/response/student-response";
 
 @Injectable({
   providedIn: 'root'
@@ -14,6 +14,7 @@ import {StudentRegisterRequest} from "../../../models/request/student-register-r
 export class StudentAuthService {
 
   private MANAGER_AUTH_API: string = 'http://localhost:8080/api/auth/student';
+  private MANAGER_PROFILE: string = 'http://localhost:8080/api/student';
   private httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
@@ -52,6 +53,10 @@ export class StudentAuthService {
     localStorage.removeItem('user');
     window.location.reload();
     this.router.navigateByUrl('/student/login');
+  }
+
+  public getLoggedInStudent(): Observable<StudentResponse> {
+    return this.http.get<StudentResponse>(this.MANAGER_PROFILE)
   }
 
 }
