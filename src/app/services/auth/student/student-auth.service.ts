@@ -13,8 +13,8 @@ import {StudentResponse} from "../../../models/response/student-response";
 })
 export class StudentAuthService {
 
-  private MANAGER_AUTH_API: string = 'http://localhost:8080/api/auth/student';
-  private MANAGER_PROFILE: string = 'http://localhost:8080/api/student';
+  private STUDENT_AUTH_API: string = 'http://localhost:8080/api/auth/student';
+  private STUDENT_PROFILE: string = 'http://localhost:8080/api/student';
   private httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
@@ -27,7 +27,7 @@ export class StudentAuthService {
 
   public authenticate(loginRequest: LoginRequest): Observable<AuthResponse> {
     return this.http.post<AuthResponse>(
-      `${this.MANAGER_AUTH_API}/login`, loginRequest, this.httpOptions
+      `${this.STUDENT_AUTH_API}/login`, loginRequest, this.httpOptions
     )
   }
 
@@ -45,7 +45,7 @@ export class StudentAuthService {
     formData.append('classId', String(studentRegisterRequest.classId));
     formData.append('specialtyId', String(studentRegisterRequest.specialtyId));
     return this.http.post<AuthResponse>(
-      `${this.MANAGER_AUTH_API}/register`, formData
+      `${this.STUDENT_AUTH_API}/register`, formData
     )
   }
 
@@ -56,7 +56,7 @@ export class StudentAuthService {
   }
 
   public getLoggedInStudent(): Observable<StudentResponse> {
-    return this.http.get<StudentResponse>(this.MANAGER_PROFILE)
+    return this.http.get<StudentResponse>(this.STUDENT_PROFILE)
   }
 
 }
