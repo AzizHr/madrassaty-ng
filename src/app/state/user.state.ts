@@ -1,15 +1,15 @@
-import {YearResponse} from "../models/response/year-response";
+import {ManagerResponse} from "../models/response/manager-response";
+import {StudentResponse} from "../models/response/student-response";
+import {TeacherResponse} from "../models/response/teacher-response";
 
-export interface YearState {
+export interface UserState {
   isLoading: boolean;
-  years: YearResponse[];
-  selectedYear: any;
+  user: ManagerResponse | StudentResponse | TeacherResponse | null;
   error: string | null;
 }
 
-export const initialState: YearState = {
+export const initialState: UserState = {
   isLoading: false,
-  years: [],
-  selectedYear: {},
+  user: null,
   error: null
 };
