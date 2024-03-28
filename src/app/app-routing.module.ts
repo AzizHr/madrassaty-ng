@@ -41,6 +41,8 @@ const routes: Routes = [
       {path: "specialties", component: SpecialtiesComponent},
           {path: "years", component: SchoolYearsComponent}
     ] },
+  { path: "teacher/login", component: ManagerLoginComponent },
+  { path: "teacher/register", component: ManagerRegisterComponent },
   { path: "teacher/dashboard", component: TeacherDashboardComponent, children: [
       {path: "classrooms", component: MyClassroomsComponent},
       {path: "profile", component: TeacherProfileComponent},
@@ -48,6 +50,8 @@ const routes: Routes = [
       {path: "students/profile/:id", component: MyStudentProfileComponent},
     ] },
   { path: "school/register", component: CreateSchoolComponent },
+  { path: "student/login", component: ManagerLoginComponent },
+  { path: "student/register", component: ManagerRegisterComponent },
   { path: "student/dashboard", component: StudentDashboardComponent, children: [
     {path: "absence", component: AbsenceComponent},
     {path: "profile", component: ProfileComponent},

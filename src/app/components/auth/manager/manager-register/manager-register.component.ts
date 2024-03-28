@@ -70,12 +70,11 @@ export class ManagerRegisterComponent {
         this.isRegistered = true;
         this.isRegisterFailed = false;
         console.log(data)
-        this.jwtStorageService.saveUser(data)
         setTimeout(() => {
           Swal.fire({
             position: "top-end",
             icon: "success",
-            title: "Your account created with success",
+            title: `${data.message}`,
             showConfirmButton: false,
             timer: 1500
           });

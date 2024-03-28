@@ -8,25 +8,4 @@ import {ProfileResponse} from "../../models/response/profile-response";
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css']
 })
-export class NavbarComponent {
-
-  user: ProfileResponse;
-  isLoggedIn = false;
-  isManager = false;
-  isStudent = false;
-  isTeacher = false;
-
-  constructor(private roleCheckerService: RoleCheckerService, private jwtStorageService: JwtStorageService) {
-    this.isLoggedIn = roleCheckerService.isLoggedIn();
-    this.isManager = roleCheckerService.isManager();
-    this.isStudent = roleCheckerService.isStudent();
-    this.isTeacher = roleCheckerService.isTeacher()
-    this.user = jwtStorageService.getUser()
-  }
-
-  logout(): void {
-    this.jwtStorageService.removeUser()
-    window.location.reload()
-  }
-
-}
+export class NavbarComponent {}

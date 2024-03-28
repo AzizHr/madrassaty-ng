@@ -1,20 +1,18 @@
 import { Component } from '@angular/core';
-import {ProfileResponse} from "../../../../models/response/profile-response";
 import {FormBuilder, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
-import {ManagerAuthService} from "../../../../services/auth/manager/manager-auth.service";
 import {JwtStorageService} from "../../../../services/jwt/jwt-storage.service";
+import {RoleCheckerService} from "../../../../services/auth/role-checker/role-checker.service";
 import {LoginRequest} from "../../../../models/request/login-request";
 import Swal from "sweetalert2";
-import {RoleCheckerService} from "../../../../services/auth/role-checker/role-checker.service";
 import {TeacherAuthService} from "../../../../services/auth/teacher/teacher-auth.service";
 
 @Component({
-  selector: 'app-manager-login',
-  templateUrl: './manager-login.component.html',
-  styleUrls: ['./manager-login.component.css']
+  selector: 'app-teacher-login',
+  templateUrl: './teacher-login.component.html',
+  styleUrls: ['./teacher-login.component.css']
 })
-export class ManagerLoginComponent {
+export class TeacherLoginComponent {
 
   isLoggedIn = false;
   isLoginFailed = false;
@@ -28,7 +26,7 @@ export class ManagerLoginComponent {
 
   constructor(private formBuilder: FormBuilder,
               private router: Router,
-              private managerAuthService: TeacherAuthService,
+              private teacherAuthService: TeacherAuthService,
               private jwtStorageService: JwtStorageService,
               private roleCheckerService: RoleCheckerService) {}
 
@@ -48,7 +46,7 @@ export class ManagerLoginComponent {
       password: this.loginForm.value.password
     }
 
-    this.managerAuthService.authenticate(loginRequest).subscribe(
+    this.teacherAuthService.authenticate(loginRequest).subscribe(
       (data) => {
         console.log(data);
         this.jwtStorageService.saveAccessToken(data);
@@ -66,10 +64,9 @@ export class ManagerLoginComponent {
           text: this.errorMessage
         });
         this.isLoginFailed = true;
-        this.router.navigateByUrl("/manager/login")
+        this.router.navigateByUrl("/teacher/login")
       }
     )
     this.isSubmitted = true;
   }
-
 }

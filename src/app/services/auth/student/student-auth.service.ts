@@ -6,7 +6,7 @@ import {LoginRequest} from "../../../models/request/login-request";
 import {AuthResponse} from "../../../models/response/auth-response.models";
 import {JwtStorageService} from "../../jwt/jwt-storage.service";
 import {StudentRegisterRequest} from "../../../models/request/student-register-request";
-import {StudentResponse} from "../../../models/response/student-response";
+import {StudentProfileResponse} from "../../../models/response/student-profile-response";
 
 @Injectable({
   providedIn: 'root'
@@ -19,11 +19,7 @@ export class StudentAuthService {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
 
-  constructor(private http: HttpClient, private router: Router, private jwtStorageService: JwtStorageService) {}
-
-  public isLoggedIn(): boolean {
-    return !!(this.jwtStorageService.getToken() && this.jwtStorageService.getUser());
-  }
+  constructor(private http: HttpClient, private router: Router) {}
 
   public authenticate(loginRequest: LoginRequest): Observable<AuthResponse> {
     return this.http.post<AuthResponse>(
@@ -55,8 +51,8 @@ export class StudentAuthService {
     this.router.navigateByUrl('/student/login');
   }
 
-  public getLoggedInStudent(): Observable<StudentResponse> {
-    return this.http.get<StudentResponse>(this.STUDENT_PROFILE)
+  public getLoggedInStudent(): Observable<StudentProfileResponse> {
+    return this.http.get<StudentProfileResponse>(this.STUDENT_PROFILE)
   }
 
 }

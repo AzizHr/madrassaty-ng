@@ -3,8 +3,8 @@ import {ProfileResponse} from "../../models/response/profile-response";
 import {TeacherClassRequest} from "../../models/request/teacher-class-request";
 import {TeacherClassResponse} from "../../models/response/teacher-class-response";
 import {Page} from "../../models/page/page";
-import {StudentResponse} from "../../models/response/student-response";
-import {TeacherResponse} from "../../models/response/teacher-response";
+import {StudentProfileResponse} from "../../models/response/student-profile-response";
+import {TeacherProfileResponse} from "../../models/response/teacher-profile-response";
 
 export const loadTeachersBySchoolId = createAction("[Teacher] Load Teachers By School Id", props<{ schoolId: number, page: number, size: number }>());
 export const loadTeachersBySchoolIdSuccess = createAction("[Teacher] Load Teachers By School Id Success", props<{ teacherPage: Page<ProfileResponse> }>());

@@ -9,7 +9,7 @@ import {StudentAuthService} from "../../services/auth/student/student-auth.servi
 import {TeacherAuthService} from "../../services/auth/teacher/teacher-auth.service";
 
 @Injectable()
-export class SchoolEffects {
+export class AuthEffects {
   constructor(private actions$: Actions, private managerAuthService: ManagerAuthService, private studentAuthService: StudentAuthService, private teacherAuthService: TeacherAuthService, private router: Router) {}
 
   getLoggedInManager$ = createEffect(() =>

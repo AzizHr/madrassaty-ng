@@ -5,7 +5,8 @@ import {Router} from "@angular/router";
 import {LoginRequest} from "../../../models/request/login-request";
 import {AuthResponse} from "../../../models/response/auth-response.models";
 import {ManagerRegisterRequest} from "../../../models/request/manager-register-request";
-import {ManagerResponse} from "../../../models/response/manager-response";
+import {ManagerProfileResponse} from "../../../models/response/manager-profile-response";
+import {RegisterResponse} from "../../../models/response/register-response";
 
 @Injectable({
   providedIn: 'root'
@@ -27,7 +28,7 @@ export class ManagerAuthService {
     )
   }
 
-  public register(managerRegisterRequest: ManagerRegisterRequest): Observable<AuthResponse> {
+  public register(managerRegisterRequest: ManagerRegisterRequest): Observable<RegisterResponse> {
     const formData = new FormData();
     formData.append('firstname', managerRegisterRequest.firstname);
     formData.append('lastname', managerRegisterRequest.lastname);
@@ -39,7 +40,7 @@ export class ManagerAuthService {
     formData.append('city', managerRegisterRequest.city);
     formData.append('address', managerRegisterRequest.address);
     formData.append('schoolId', String(managerRegisterRequest.schoolId));
-    return this.http.post<AuthResponse>(
+    return this.http.post<RegisterResponse>(
       `${this.MANAGER_AUTH_API}/register`, formData
     )
   }
@@ -50,7 +51,7 @@ export class ManagerAuthService {
     this.router.navigateByUrl('/manager/login');
   }
 
-  public getLoggedInManager(): Observable<ManagerResponse> {
-    return this.http.get<ManagerResponse>(this.MANAGER_PROFILE)
+  public getLoggedInManager(): Observable<ManagerProfileResponse> {
+    return this.http.get<ManagerProfileResponse>(this.MANAGER_PROFILE)
   }
 }

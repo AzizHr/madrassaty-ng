@@ -1,9 +1,9 @@
 import { createAction, props } from '@ngrx/store';
 import {ProfileResponse} from "../../models/response/profile-response";
 import {Page} from "../../models/page/page";
-import {ManagerResponse} from "../../models/response/manager-response";
-import {StudentResponse} from "../../models/response/student-response";
-import {TeacherResponse} from "../../models/response/teacher-response";
+import {ManagerProfileResponse} from "../../models/response/manager-profile-response";
+import {StudentProfileResponse} from "../../models/response/student-profile-response";
+import {TeacherProfileResponse} from "../../models/response/teacher-profile-response";
 
 
 export const loadStudentsBySchoolId = createAction("[Student] Load Students By School Id", props<{ schoolId: number, page: number, size: number }>());

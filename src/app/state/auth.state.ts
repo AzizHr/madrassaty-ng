@@ -1,10 +1,10 @@
-import {ManagerResponse} from "../models/response/manager-response";
-import {StudentResponse} from "../models/response/student-response";
-import {TeacherResponse} from "../models/response/teacher-response";
+import {ManagerProfileResponse} from "../models/response/manager-profile-response";
+import {StudentProfileResponse} from "../models/response/student-profile-response";
+import {TeacherProfileResponse} from "../models/response/teacher-profile-response";
 
 export interface AuthState {
   isLoading: boolean;
-  auth: ManagerResponse | StudentResponse | TeacherResponse | null;
+  auth: ManagerProfileResponse | StudentProfileResponse | TeacherProfileResponse | null;
   error: string | null;
 }
 

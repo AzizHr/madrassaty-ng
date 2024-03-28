@@ -6,33 +6,24 @@ import {AuthResponse} from "../../models/response/auth-response.models";
 })
 export class JwtStorageService {
 
-  private USER_KEY: string = 'user';
+  private ACCESS_TOKEN_KEY: string = 'access_token';
 
   constructor() {}
 
   public getToken(): string | null {
-      const userString = localStorage.getItem(this.USER_KEY);
-      if (userString) {
-        const user = JSON.parse(userString);
-        return user.token;
+      const accessToken = localStorage.getItem(this.ACCESS_TOKEN_KEY);
+      if (accessToken) {
+        return accessToken;
       }
       return null;
   }
 
-  public saveUser(user: AuthResponse): void {
-    localStorage.removeItem(this.USER_KEY);
-    localStorage.setItem(this.USER_KEY, JSON.stringify(user));
+  public saveAccessToken(authResponse: AuthResponse ): void {
+    localStorage.removeItem(this.ACCESS_TOKEN_KEY);
+    localStorage.setItem(this.ACCESS_TOKEN_KEY, authResponse.accessToken);
   }
 
-  public getUser(): AuthResponse | null {
-    const userString = localStorage.getItem(this.USER_KEY);
-    if (userString) {
-      return JSON.parse(userString);
-    }
-    return null;
-  }
-
-  public removeUser() {
-    localStorage.removeItem(this.USER_KEY);
+  public removeAccessToken() {
+    localStorage.removeItem(this.ACCESS_TOKEN_KEY);
   }
 }

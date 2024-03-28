@@ -12,6 +12,7 @@ import {classesSelector} from "../../../../store/selectors/class.selectors";
 import {loadClassesBySchoolIdWithNoPagination} from "../../../../store/actions/class.actions";
 import {TeacherClassRequest} from "../../../../models/request/teacher-class-request";
 import {Page} from "../../../../models/page/page";
+import {UserResponse} from "../../../../models/response/user-response";
 
 @Component({
   selector: 'app-teachers',
@@ -20,9 +21,9 @@ import {Page} from "../../../../models/page/page";
 })
 export class TeachersComponent {
   isLoading$: Observable<boolean>;
-  teacherPage$: Observable<Page<ProfileResponse>>;
+  teacherPage$: Observable<Page<UserResponse>>;
   error$: Observable<string | null>;
-  teachers: ProfileResponse[] = [];
+  teachers: User[] = [];
 
   currentPage: number = 0;
   totalElements: number = 0;

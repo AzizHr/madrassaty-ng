@@ -6,7 +6,7 @@ import {LoginRequest} from "../../../models/request/login-request";
 import {AuthResponse} from "../../../models/response/auth-response.models";
 import {JwtStorageService} from "../../jwt/jwt-storage.service";
 import {TeacherRegisterRequest} from "../../../models/request/teacher-register-request";
-import {TeacherResponse} from "../../../models/response/teacher-response";
+import {TeacherProfileResponse} from "../../../models/response/teacher-profile-response";
 
 @Injectable({
   providedIn: 'root'
@@ -19,11 +19,7 @@ export class TeacherAuthService {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
 
-  constructor(private http: HttpClient, private router: Router, private jwtStorageService: JwtStorageService) {}
-
-  public isLoggedIn(): boolean {
-    return !!(this.jwtStorageService.getToken() && this.jwtStorageService.getUser());
-  }
+  constructor(private http: HttpClient, private router: Router) {}
 
   public authenticate(loginRequest: LoginRequest): Observable<AuthResponse> {
     return this.http.post<AuthResponse>(
@@ -54,8 +50,8 @@ export class TeacherAuthService {
     this.router.navigateByUrl('/teacher/login');
   }
 
-  public getLoggedInTeacher(): Observable<TeacherResponse> {
-    return this.http.get<TeacherResponse>(this.TEACHER_PROFILE)
+  public getLoggedInTeacher(): Observable<TeacherProfileResponse> {
+    return this.http.get<TeacherProfileResponse>(this.TEACHER_PROFILE)
   }
 
 }

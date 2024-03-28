@@ -63,6 +63,8 @@ import { StudentYearsComponent } from './components/manager/manager-dashboard/st
 import {yearReducer} from "./store/reducers/year.reducers";
 import {YearEffects} from "./store/effects/year.effects";
 import { AddYearComponent } from './components/manager/manager-dashboard/school-years/add-year/add-year.component';
+import { StudentLoginComponent } from './components/auth/student/student-login/student-login.component';
+import { TeacherLoginComponent } from './components/auth/teacher/teacher-login/teacher-login.component';
 
 @NgModule({
   declarations: [
@@ -98,7 +100,9 @@ import { AddYearComponent } from './components/manager/manager-dashboard/school-
     ManagerDashboardComponent,
     SchoolYearsComponent,
     StudentYearsComponent,
-    AddYearComponent
+    AddYearComponent,
+    StudentLoginComponent,
+    TeacherLoginComponent
   ],
   imports: [
     FullCalendarModule,

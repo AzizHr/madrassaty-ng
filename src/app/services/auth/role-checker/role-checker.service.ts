@@ -1,9 +1,9 @@
 import {Injectable} from '@angular/core';
 import {JwtStorageService} from "../../jwt/jwt-storage.service";
 import {Role} from "../../../enums/role.enums";
-import {ManagerResponse} from "../../../models/response/manager-response";
-import {StudentResponse} from "../../../models/response/student-response";
-import {TeacherResponse} from "../../../models/response/teacher-response";
+import {ManagerProfileResponse} from "../../../models/response/manager-profile-response";
+import {StudentProfileResponse} from "../../../models/response/student-profile-response";
+import {TeacherProfileResponse} from "../../../models/response/teacher-profile-response";
 import {select, Store} from "@ngrx/store";
 import {AppState} from "../../../state/app.state";
 import {authSelector} from "../../../store/selectors/auth.selectors";
@@ -15,8 +15,8 @@ import {Observable} from "rxjs";
 })
 export class RoleCheckerService {
 
-  private auth$: Observable<ManagerResponse | StudentResponse | TeacherResponse>;
-  private auth: ManagerResponse | StudentResponse | TeacherResponse;
+  private auth$: Observable<ManagerProfileResponse | StudentProfileResponse | TeacherProfileResponse>;
+  private auth: ManagerProfileResponse | StudentProfileResponse | TeacherProfileResponse;
 
   constructor(private jwtStorageService: JwtStorageService, private store: Store<AppState>) {
     this.auth$ = this.store.pipe(select(authSelector))
