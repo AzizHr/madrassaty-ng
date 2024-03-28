@@ -17,5 +17,5 @@ export interface AppState {
   subjects: SubjectState,
   absences: AbsenceState,
   years: YearState,
-  user: AuthState
+  auth: AuthState
 }
