@@ -2,14 +2,14 @@ import {ManagerResponse} from "../models/response/manager-response";
 import {StudentResponse} from "../models/response/student-response";
 import {TeacherResponse} from "../models/response/teacher-response";
 
-export interface UserState {
+export interface AuthState {
   isLoading: boolean;
-  user: ManagerResponse | StudentResponse | TeacherResponse | null;
+  auth: ManagerResponse | StudentResponse | TeacherResponse | null;
   error: string | null;
 }
 
-export const initialState: UserState = {
+export const initialState: AuthState = {
   isLoading: false,
-  user: null,
+  auth: null,
   error: null
 };
