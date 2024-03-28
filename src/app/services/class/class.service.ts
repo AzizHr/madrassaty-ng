@@ -18,21 +18,21 @@ export class ClassService {
     return this.http.post<ClassResponse>(this.api, classRequest);
   }
 
-  public getAllBySchoolId(schoolId: number, page: number, size: number): Observable<Page<ClassResponse>> {
+  public getAllBySchoolId(schoolId: string, page: number, size: number): Observable<Page<ClassResponse>> {
     const params: HttpParams = new HttpParams().set('page', page.toString()).set('size', size.toString());
     return this.http.get<Page<ClassResponse>>(`${this.api}/school/${schoolId}`, { params });
   }
 
-  public getAllBySchoolIdWithNoPagination(schoolId: number): Observable<Page<ClassResponse>> {
+  public getAllBySchoolIdWithNoPagination(schoolId: string): Observable<Page<ClassResponse>> {
     return this.http.get<Page<ClassResponse>>(`${this.api}/school/${schoolId}`);
   }
 
-  public getAllByTeacherId(teacherId: number, page: number, size: number): Observable<Page<ClassResponse>> {
+  public getAllByTeacherId(teacherId: string, page: number, size: number): Observable<Page<ClassResponse>> {
     const params: HttpParams = new HttpParams().set('page', page.toString()).set('size', size.toString());
     return this.http.get<Page<ClassResponse>>(`${this.api}/teacher/${teacherId}`, { params });
   }
 
-  public getAllByTeacherIdWithNoPagination(teacherId: number): Observable<Page<ClassResponse>> {
+  public getAllByTeacherIdWithNoPagination(teacherId: string): Observable<Page<ClassResponse>> {
     return this.http.get<Page<ClassResponse>>(`${this.api}/teacher/${teacherId}`);
   }
 

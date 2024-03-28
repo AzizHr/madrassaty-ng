@@ -18,7 +18,7 @@ export class SchoolService {
     return this.http.post<SchoolResponse>(this.api, schoolRequest);
   }
 
-  public getByManagerId(managerId: number): Observable<SchoolResponse> {
+  public getByManagerId(managerId: string): Observable<SchoolResponse> {
     return this.http.get<SchoolResponse>(`${this.api}/by/manager/${managerId}`);
   }
 

@@ -6,11 +6,11 @@ import {SpecialtySubjectResponse} from "../../models/response/specialty-subject-
 import {Page} from "../../models/page/page";
 
 
-export const loadSubjectsBySchoolId = createAction("[Subject] Load Subjects By School Id", props<{ schoolId: number, page: number, size: number }>());
+export const loadSubjectsBySchoolId = createAction("[Subject] Load Subjects By School Id", props<{ schoolId: string, page: number, size: number }>());
 export const loadSubjectsBySchoolIdSuccess = createAction("[Subject] Load Subjects By School Id Success", props<{ subjectPage: Page<SubjectResponse> }>());
 export const loadSubjectsBySchoolIdFailure = createAction("[Subject] Load Subjects By School Id Failure", props<{ error: string }>());
 
-export const loadSubjectsBySchoolIdWithNoPagination = createAction("[Subject] Load Subjects By School Id With No Pagination", props<{ schoolId: number }>());
+export const loadSubjectsBySchoolIdWithNoPagination = createAction("[Subject] Load Subjects By School Id With No Pagination", props<{ schoolId: string }>());
 export const loadSubjectsBySchoolIdWithNoPaginationSuccess = createAction("[Subject] Load Subjects By School Id With No Pagination Success", props<{ subjectPage: Page<SubjectResponse> }>());
 export const loadSubjectsBySchoolIdWithNoPaginationFailure = createAction("[Subject] Load Subjects By School Id With No Pagination Failure", props<{ error: string }>());
 

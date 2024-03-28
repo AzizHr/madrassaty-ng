@@ -16,7 +16,7 @@ export class YearService {
     return this.http.post<YearResponse>(this.api, yearRequest);
   }
 
-  public getAllBySchoolId(schoolId: number): Observable<YearResponse[]> {
+  public getAllBySchoolId(schoolId: string): Observable<YearResponse[]> {
     return this.http.get<YearResponse[]>(`${this.api}/school/${schoolId}`);
   }
 }

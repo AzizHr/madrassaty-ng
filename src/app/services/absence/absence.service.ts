@@ -17,7 +17,7 @@ export class AbsenceService {
     return this.http.post<AbsenceResponse>(this.api, absentRequest);
   }
 
-  public getAllByStudentId(studentId: number): Observable<AbsenceResponse[]> {
+  public getAllByStudentId(studentId: string): Observable<AbsenceResponse[]> {
     return this.http.get<AbsenceResponse[]>(`${this.api}/student/${studentId}`);
   }
 }

@@ -4,15 +4,15 @@ import {TeacherClassResponse} from "../../models/response/teacher-class-response
 import {Page} from "../../models/page/page";
 import {TeacherResponse} from "../../models/response/teacher-response";
 
-export const loadTeachersBySchoolId = createAction("[Teacher] Load Teachers By School Id", props<{ schoolId: number, page: number, size: number }>());
+export const loadTeachersBySchoolId = createAction("[Teacher] Load Teachers By School Id", props<{ schoolId: string, page: number, size: number }>());
 export const loadTeachersBySchoolIdSuccess = createAction("[Teacher] Load Teachers By School Id Success", props<{ teacherPage: Page<TeacherResponse> }>());
 export const loadTeachersBySchoolIdFailure = createAction("[Teacher] Load Teachers By School Id Failure", props<{ error: string }>());
 
-export const loadTeachersBySchoolIdWithNoPagination = createAction("[Teacher] Load Teachers By School Id With No Pagination", props<{ schoolId: number }>());
+export const loadTeachersBySchoolIdWithNoPagination = createAction("[Teacher] Load Teachers By School Id With No Pagination", props<{ schoolId: string }>());
 export const loadTeachersBySchoolIdWithNoPaginationSuccess = createAction("[Teacher] Load Teachers By School Id With No Pagination Success", props<{ teacherPage: Page<TeacherResponse> }>());
 export const loadTeachersBySchoolIdWithNoPaginationFailure = createAction("[Teacher] Load Teachers By School Id With No Pagination Failure", props<{ error: string }>());
 
-export const loadTeachersByClassId = createAction("[Teacher] Load Teachers By Class Id", props<{ classId: number, page: number, size: number }>());
+export const loadTeachersByClassId = createAction("[Teacher] Load Teachers By Class Id", props<{ classId: string, page: number, size: number }>());
 export const loadTeachersByClassIdSuccess = createAction("[Teacher] Load Teachers By Class Id Success", props<{ teacherPage: Page<TeacherResponse> }>());
 export const loadTeachersByClassIdFailure = createAction("[Teacher] Load Teachers By Class Id Failure", props<{ error: string }>());
 

@@ -16,16 +16,16 @@ export class TeacherService {
 
   api: string = "http://localhost:8080/api/teachers";
 
-  public getAllBySchoolId(schoolId: number, page: number, size: number): Observable<Page<TeacherResponse>> {
+  public getAllBySchoolId(schoolId: string, page: number, size: number): Observable<Page<TeacherResponse>> {
     const params: HttpParams = new HttpParams().set('page', page.toString()).set('size', size.toString());
     return this.http.get<Page<TeacherResponse>>(`${this.api}/school/${schoolId}`, { params });
   }
 
-  public getAllBySchoolIdWithNoPagination(schoolId: number): Observable<Page<TeacherResponse>> {
+  public getAllBySchoolIdWithNoPagination(schoolId: string): Observable<Page<TeacherResponse>> {
     return this.http.get<Page<TeacherResponse>>(`${this.api}/school/${schoolId}`);
   }
 
-  public getAllByClassId(classId: number, page: number, size: number): Observable<Page<TeacherResponse>> {
+  public getAllByClassId(classId: string, page: number, size: number): Observable<Page<TeacherResponse>> {
     const params: HttpParams = new HttpParams().set('page', page.toString()).set('size', size.toString());
     return this.http.get<Page<TeacherResponse>>(`${this.api}/class/${classId}`, { params });
   }

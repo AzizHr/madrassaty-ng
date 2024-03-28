@@ -18,12 +18,12 @@ export class SpecialtyService {
     return this.http.post<SpecialtyResponse>(this.api, specialtyRequest);
   }
 
-  public getAllBySchoolId(schoolId: number, page: number, size: number): Observable<Page<SpecialtyResponse>> {
+  public getAllBySchoolId(schoolId: string, page: number, size: number): Observable<Page<SpecialtyResponse>> {
     const params: HttpParams = new HttpParams().set('page', page.toString()).set('size', size.toString());
     return this.http.get<Page<SpecialtyResponse>>(`${this.api}/school/${schoolId}`, { params });
   }
 
-  public getAllBySchoolIdWithNoPagination(schoolId: number): Observable<Page<SpecialtyResponse>> {
+  public getAllBySchoolIdWithNoPagination(schoolId: string): Observable<Page<SpecialtyResponse>> {
     return this.http.get<Page<SpecialtyResponse>>(`${this.api}/school/${schoolId}`);
   }
 
