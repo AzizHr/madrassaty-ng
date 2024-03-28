@@ -6,6 +6,7 @@ import {SubjectState} from "./subject.state";
 import {TeacherState} from "./teacher.state";
 import {AbsenceState} from "./absence.state";
 import {YearState} from "./year.state";
+import {UserState} from "./user.state";
 
 export interface AppState {
   classes: ClassState,
@@ -15,5 +16,6 @@ export interface AppState {
   teachers: TeacherState,
   subjects: SubjectState,
   absences: AbsenceState,
-  years: YearState
+  years: YearState,
+  user: UserState
 }
