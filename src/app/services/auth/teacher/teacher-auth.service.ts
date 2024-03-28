@@ -6,13 +6,15 @@ import {LoginRequest} from "../../../models/request/login-request";
 import {AuthResponse} from "../../../models/response/auth-response.models";
 import {JwtStorageService} from "../../jwt/jwt-storage.service";
 import {TeacherRegisterRequest} from "../../../models/request/teacher-register-request";
+import {TeacherResponse} from "../../../models/response/teacher-response";
 
 @Injectable({
   providedIn: 'root'
 })
 export class TeacherAuthService {
 
-  private MANAGER_AUTH_API: string = 'http://localhost:8080/api/auth/teacher';
+  private TEACHER_AUTH_API: string = 'http://localhost:8080/api/auth/teacher';
+  private TEACHER_PROFILE: string = 'http://localhost:8080/api/teacher';
   private httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
@@ -25,7 +27,7 @@ export class TeacherAuthService {
 
   public authenticate(loginRequest: LoginRequest): Observable<AuthResponse> {
     return this.http.post<AuthResponse>(
-      `${this.MANAGER_AUTH_API}/login`, loginRequest, this.httpOptions
+      `${this.TEACHER_AUTH_API}/login`, loginRequest, this.httpOptions
     )
   }
 
@@ -42,7 +44,7 @@ export class TeacherAuthService {
     formData.append('address', teacherRegisterRequest.address);
     formData.append('subjectId', String(teacherRegisterRequest.subjectId));
     return this.http.post<AuthResponse>(
-      `${this.MANAGER_AUTH_API}/register`, formData
+      `${this.TEACHER_AUTH_API}/register`, formData
     )
   }
 
@@ -50,6 +52,10 @@ export class TeacherAuthService {
     localStorage.removeItem('user');
     window.location.reload();
     this.router.navigateByUrl('/teacher/login');
+  }
+
+  public getLoggedInTeacher(): Observable<TeacherResponse> {
+    return this.http.get<TeacherResponse>(this.TEACHER_PROFILE)
   }
 
 }
