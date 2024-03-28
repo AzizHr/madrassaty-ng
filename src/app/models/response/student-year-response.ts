@@ -1,10 +1,10 @@
-import {UserResponse} from "./user-response";
+import {ProfileResponse} from "./profile-response";
 import {YearRequest} from "../request/year-request";
 
 export interface StudentYearResponse {
   startsAt: string;
   endsAt: string;
   scholarYear: string;
-  student: UserResponse;
+  student: ProfileResponse;
   year: YearRequest;
 }

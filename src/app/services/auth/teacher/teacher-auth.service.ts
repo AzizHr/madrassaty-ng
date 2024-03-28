@@ -5,7 +5,6 @@ import {Router} from "@angular/router";
 import {LoginRequest} from "../../../models/request/login-request";
 import {AuthResponse} from "../../../models/response/auth-response.models";
 import {JwtStorageService} from "../../jwt/jwt-storage.service";
-import {ManagerRegisterRequest} from "../../../models/request/manager-register-request";
 import {TeacherRegisterRequest} from "../../../models/request/teacher-register-request";
 
 @Injectable({
@@ -13,7 +12,7 @@ import {TeacherRegisterRequest} from "../../../models/request/teacher-register-r
 })
 export class TeacherAuthService {
 
-  private MANAGER_AUTH_API: string = 'http://localhost:8080/api/teacher';
+  private MANAGER_AUTH_API: string = 'http://localhost:8080/api/auth/teacher';
   private httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
@@ -31,8 +30,19 @@ export class TeacherAuthService {
   }
 
   public register(teacherRegisterRequest: TeacherRegisterRequest): Observable<AuthResponse> {
+    const formData = new FormData();
+    formData.append('firstname', teacherRegisterRequest.firstname);
+    formData.append('lastname', teacherRegisterRequest.lastname);
+    formData.append('email', teacherRegisterRequest.email);
+    formData.append('password', teacherRegisterRequest.password);
+    if (teacherRegisterRequest.image instanceof File) {
+      formData.append('image', teacherRegisterRequest.image, teacherRegisterRequest.image.name);
+    }
+    formData.append('city', teacherRegisterRequest.city);
+    formData.append('address', teacherRegisterRequest.address);
+    formData.append('subjectId', String(teacherRegisterRequest.subjectId));
     return this.http.post<AuthResponse>(
-      `${this.MANAGER_AUTH_API}/register`, teacherRegisterRequest, this.httpOptions
+      `${this.MANAGER_AUTH_API}/register`, formData
     )
   }
 

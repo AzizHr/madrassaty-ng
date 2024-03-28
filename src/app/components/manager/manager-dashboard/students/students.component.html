@@ -1,0 +1,101 @@
+<section
+  class="flex flex-col w-full px-6 md:justify-between md:items-center md:flex-row"
+>
+  <div>
+    <h2 class="text-3xl font-medium text-gray-800">
+      IBN SINA HIGH SCHOOL
+    </h2>
+    <p class="mt-2 text-sm text-gray-500">Manager dashboard</p>
+  </div>
+  <div class="flex flex-col mt-6 md:flex-row md:-mx-1 md:mt-0">
+    <div class="flex flex-col mt-6 md:flex-row md:-mx-1 md:mt-0">
+      <!-- Modal toggle -->
+      <button
+        data-modal-target="crud-modal"
+        data-modal-toggle="crud-modal"
+        class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
+        type="button"
+      >
+        Register New Student
+      </button>
+    </div>
+    <!-- </div> -->
+    <!-- Register New Student -->
+    <app-register-a-student></app-register-a-student>
+  </div>
+</section>
+
+<section class="bg-white mt-6">
+  <div class="container px-6 py-10 mx-auto">
+    <h1
+      class="text-2xl font-semibold text-center text-gray-800 capitalize lg:text-3xl"
+    >
+      Students
+    </h1>
+    <div
+      class="grid grid-cols-1 gap-8 mt-8 xl:mt-16 md:grid-cols-2 xl:grid-cols-4"
+    >
+      <!--Card starts-->
+      <div
+        *ngFor="let student of students"
+        class="flex flex-col items-center p-8 transition-colors duration-300 transform cursor-pointer group hover:bg-green-600 rounded-xl"
+      >
+        <img
+          class="object-cover w-32 h-32 rounded-full ring-4 ring-gray-300"
+          [src]="student.image"
+          alt=""
+        />
+
+        <h1
+          class="mt-4 text-2xl font-semibold text-gray-700 capitalize group-hover:text-white"
+        >
+          {{ student.firstname }} {{ student.lastname }}
+        </h1>
+
+        <p
+          class="mt-2 text-gray-500 capitalize group-hover:text-gray-300"
+        >
+          Specialized in Something
+        </p>
+
+        <div class="flex mt-3 -mx-2">
+          <span class="group-hover:text-gray-300">Sun 95</span>
+        </div>
+      </div>
+      <!--Card ends-->
+    </div>
+  </div>
+</section>
+
+<div class="mt-5 mx-auto w-fit">
+  <div class="flex items-center">
+    <!-- Previous Page Button -->
+    <button
+      class="bg-gray-200 px-4 py-2 rounded-l"
+      [disabled]="isFirstPage()"
+      (click)="onPageChange({ page: currentPage - 1, rows: limit })"
+    >
+      Previous
+    </button>
+
+    <!-- Page Numbers -->
+    <div class="flex">
+      <button
+        *ngFor="let page of pages"
+        class="bg-gray-200 px-4 py-2"
+        (click)="onPageChange({ page: page, rows: limit })"
+      >
+        {{ page + 1 }}
+      </button>
+    </div>
+
+    <!-- Next Page Button -->
+    <button
+      [disabled]="isLastPage()"
+      class="bg-gray-200 px-4 py-2 rounded-r"
+      (click)="onPageChange({ page: currentPage + 1, rows: limit })"
+    >
+      Next
+    </button>
+  </div>
+</div>

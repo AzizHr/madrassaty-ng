@@ -1,9 +1,9 @@
-import {UserResponse} from "../models/response/user-response";
+import {ProfileResponse} from "../models/response/profile-response";
 import {Page} from "../models/page/page";
 
 export interface TeacherState {
   isLoading: boolean;
-  teacherPage: Page<UserResponse>;
+  teacherPage: Page<ProfileResponse>;
   selectedTeacher: any;
   error: string | null;
 }

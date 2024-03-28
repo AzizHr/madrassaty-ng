@@ -1,0 +1,184 @@
+<section class="bg-white dark:bg-gray-900 mt-6">
+  <div class="container py-10 mx-auto">
+    <div class="lg:flex lg:-mx-6">
+      <div class="lg:w-3/4 lg:px-6">
+        <img class="object-cover object-center w-full h-80 xl:h-[28rem] rounded-xl" src="https://images4.alphacoders.com/133/1333697.jpeg" alt="">
+
+        <div>
+                              <p class="mt-6 text-sm text-blue-500 uppercase">Sun 95</p>
+
+          <h1 class="max-w-lg mt-4 text-2xl font-semibold leading-tight text-gray-800 dark:text-white">
+            Specialized in Java/Angular
+          </h1>
+
+          <!--                    <div class="flex items-center mt-6">-->
+          <!--                        <img class="object-cover object-center w-10 h-10 rounded-full" src="https://images.unsplash.com/photo-1531590878845-12627191e687?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=764&q=80" alt="">-->
+
+          <!--                        <div class="mx-4">-->
+          <!--                            <h1 class="text-sm text-gray-700 dark:text-gray-200">Amelia. Anderson</h1>-->
+          <!--                            <p class="text-sm text-gray-500 dark:text-gray-400">Lead Developer</p>-->
+          <!--                        </div>-->
+          <!--                    </div>-->
+        </div>
+      </div>
+
+      <div class="mt-8 lg:w-1/4 lg:mt-0 lg:px-6 h-80 xl:h-[28rem] overflow-y-auto">
+
+        <div class="flex justify-between items-center">
+          <div class="flex items-center gap-x-2">
+            <img class="object-cover w-12 h-12 rounded-full" src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=faceare&facepad=3&w=688&h=688&q=100" alt="">
+
+            <div>
+              <div class="flex justify-between">
+                <h1 class="text-xl font-semibold text-gray-700 capitalize dark:text-white">Mia John</h1>
+                <button data-modal-target="crud-modal1" data-modal-toggle="crud-modal1" type="button"><i class="fa-regular fa-calendar"></i></button>
+              </div>
+
+
+              <p class="text-sm text-gray-500 dark:text-gray-400">miajohn@merakiui.com</p>
+            </div>
+          </div>
+
+        </div>
+
+        <hr class="my-4 border-gray-200 dark:border-gray-700">
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<div
+  id="crud-modal1"
+  tabindex="-1"
+  aria-hidden="true"
+  class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full"
+>
+  <div class="relative p-4 w-full max-w-md max-h-full">
+    <!-- Modal content -->
+    <div class="relative bg-white rounded-lg shadow">
+      <!-- Modal header -->
+      <div
+        class="flex items-center justify-between p-4 md:p-5 border-b rounded-t"
+      >
+        <h3
+          class="text-lg font-semibold text-gray-900"
+        >
+          Note absent for a student
+        </h3>
+        <button
+          type="button"
+          class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center"
+          data-modal-toggle="crud-modal1"
+        >
+          <svg
+            class="w-3 h-3"
+            aria-hidden="true"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 14 14"
+          >
+            <path
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"
+            />
+          </svg>
+          <span class="sr-only">Close modal</span>
+        </button>
+      </div>
+      <!-- Modal body -->
+      <form [formGroup]="absentForm" (ngSubmit)="onSubmit()" class="p-4 md:p-5">
+        <div class="grid gap-4 mb-4 grid-cols-2">
+          <div class="col-span-2">
+            <label
+              for="duration"
+              class="block mb-2 text-sm font-medium text-gray-900"
+            >Duration</label
+            >
+            <input
+              formControlName="duration"
+              type="number"
+              name="duration"
+              id="duration"
+              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
+              required=""
+            />
+            <p
+              *ngIf="isFieldValid('duration', 'required')"
+              class="mt-1 text-xs text-red-500"
+            >
+              Duration is required
+            </p>
+          </div>
+          <div class="col-span-2">
+            <label
+              for="durationType"
+              class="block mb-2 text-sm font-medium text-gray-900"
+            >Duration Type</label
+            >
+            <select
+              id="durationType"
+              formControlName="durationType"
+              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5"
+            >
+              <option *ngFor="let durationType of durationTypes" [value]="durationType">{{ durationType }}</option>
+            </select>
+            <p
+              *ngIf="isFieldValid('subjectId', 'required')"
+              class="mt-1 text-xs text-red-500"
+            >
+              Duration Type is required
+            </p>
+          </div>
+          <div class="col-span-2">
+            <label
+              for="reason"
+              class="block mb-2 text-sm font-medium text-gray-900"
+            >Reason</label
+            >
+            <textarea
+              formControlName="reason"
+              type="text"
+              name="reason"
+              id="reason"
+              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
+              required=""
+            ></textarea>
+            <p
+              *ngIf="isFieldValid('reason', 'required')"
+              class="mt-1 text-xs text-red-500"
+            >
+              Reason is required
+            </p>
+          </div>
+          <div class="flex items-center mb-4">
+            <input id="default-radio-1" formControlName="isJustified" type="radio" value="" name="default-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 focus:ring-2">
+            <label for="default-radio-1" class="ms-2 text-sm font-medium text-gray-900">Is Justified</label>
+          </div>
+        </div>
+        <button
+          [disabled]="absentForm.invalid"
+          type="submit"
+          class="text-white inline-flex items-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
+        >
+          <svg
+            class="me-1 -ms-1 w-5 h-5"
+            fill="currentColor"
+            viewBox="0 0 20 20"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
+              clip-rule="evenodd"
+            ></path>
+          </svg>
+          Save
+        </button>
+      </form>
+    </div>
+  </div>
+</div>

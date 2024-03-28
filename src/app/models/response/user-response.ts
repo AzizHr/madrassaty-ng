@@ -1,10 +1,9 @@
-import {Role} from "../../enums/role.enums";
-
 export interface UserResponse {
-  id: number;
+  id: string;
   firstname: string;
   lastname: string;
   email: string;
-  role: Role;
+  city: string;
+  address: string;
   image: string;
 }

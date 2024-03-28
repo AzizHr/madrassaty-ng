@@ -5,6 +5,11 @@ import {JwtStorageService} from "../../../../services/jwt/jwt-storage.service";
 import {Router} from "@angular/router";
 import {ManagerRegisterRequest} from "../../../../models/request/manager-register-request";
 import Swal from "sweetalert2";
+import {select, Store} from "@ngrx/store";
+import {AppState} from "../../../../state/app.state";
+import {SchoolResponse} from "../../../../models/response/school-response";
+import {schoolSelector} from "../../../../store/selectors/school.selectors";
+import {an} from "@fullcalendar/core/internal-common";
 
 @Component({
   selector: 'app-manager-register',
@@ -17,43 +22,55 @@ export class ManagerRegisterComponent {
   isRegisterFailed = false;
   errorMessage = '';
   isSubmitted = false;
+  managerRegisterRequest: ManagerRegisterRequest;
+  createdSchool: SchoolResponse;
+  schoolId: any;
 
-  registerForm = this.formBuilder.group({
+  constructor(private formBuilder: FormBuilder, private jwtStorageService: JwtStorageService, private store: Store<AppState>, private router: Router, private managerAuthService: ManagerAuthService) {
+    this.store.pipe(select(schoolSelector)).subscribe(school => {
+      this.createdSchool = school});
+  }
+
+  ngOnInit(): void {
+    console.log(this.createdSchool)
+    this.schoolId = localStorage.getItem('schoolId')
+  }
+
+  managerRegisterForm = this.formBuilder.group({
     firstname: ['', [Validators.required]],
-    lastname: ['', Validators.required],
-    email: ['', [Validators.required, Validators.email]],
-    password: ['', [Validators.required, Validators.minLength(8), Validators.maxLength(15)]],
-    image: ['', [Validators.required]],
-    schoolId: [0, Validators.required]
+    lastname: ['', [Validators.required]],
+    email: ['', [Validators.required]],
+    password: ['', [Validators.required]],
+    city: ['', [Validators.required]],
+    address: ['', [Validators.required]],
+    image: []
   });
 
-  constructor(private formBuilder: FormBuilder,
-              private managerAuthService: ManagerAuthService,
-              private jwtStorageService: JwtStorageService,
-              private router: Router) {}
-
-  ngOnInit(): void {}
-
-  isFieldValid(field: string, errorType: string): boolean {
-    return this.registerForm.get(field)?.hasError(errorType) &&
-      (this.registerForm.get(field)?.dirty ||
-        this.registerForm.get(field)?.touched || this.isSubmitted);
+  uploadFile(event: any) {
+    this.managerRegisterForm.value.image = event.target.files[0];
+    console.log(this.managerRegisterForm.value.image);
+    console.log(typeof this.managerRegisterForm.value.image);
   }
 
   onSubmit() {
-    const managerRegisterRequest: ManagerRegisterRequest  = {
-      firstname: this.registerForm.value.firstname,
-      lastname: this.registerForm.value.lastname,
-      email: this.registerForm.value.email,
-      password: this.registerForm.value.password,
-      image: this.registerForm.value.image,
-      schoolId: this.registerForm.value.schoolId
+    this.managerRegisterRequest = {
+      firstname: this.managerRegisterForm.value.firstname,
+      lastname: this.managerRegisterForm.value.lastname,
+      email: this.managerRegisterForm.value.email,
+      password: this.managerRegisterForm.value.password,
+      city: this.managerRegisterForm.value.city,
+      address: this.managerRegisterForm.value.address,
+      image: this.managerRegisterForm.value.image,
+      schoolId: this.schoolId
     }
 
-    this.managerAuthService.register(managerRegisterRequest).subscribe(
+
+    this.managerAuthService.register(this.managerRegisterRequest).subscribe(
       (data) => {
         this.isRegistered = true;
         this.isRegisterFailed = false;
+        console.log(data)
+        this.jwtStorageService.saveUser(data)
         setTimeout(() => {
           Swal.fire({
             position: "top-end",
@@ -62,7 +79,7 @@ export class ManagerRegisterComponent {
             showConfirmButton: false,
             timer: 1500
           });
-          this.router.navigateByUrl("/manager/login")
+          this.router.navigateByUrl("manager/login")
         }, 1500);
       },
       err => {
@@ -76,6 +93,14 @@ export class ManagerRegisterComponent {
       }
     )
     this.isSubmitted = true;
+    console.log(this.managerRegisterForm.value)
+
+  }
+
+  isFieldValid(field: string, errorType: string): boolean {
+    return this.managerRegisterForm.get(field)?.hasError(errorType) &&
+      (this.managerRegisterForm.get(field)?.dirty ||
+        this.managerRegisterForm.get(field)?.touched || this.isSubmitted);
   }
 
 }

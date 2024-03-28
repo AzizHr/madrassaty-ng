@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {UserResponse} from "../../../../models/response/user-response";
+import {ProfileResponse} from "../../../../models/response/profile-response";
 import {FormBuilder, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
 import {ManagerAuthService} from "../../../../services/auth/manager/manager-auth.service";
@@ -15,7 +15,7 @@ import {RoleCheckerService} from "../../../../services/auth/role-checker/role-ch
 })
 export class ManagerLoginComponent {
 
-  user: UserResponse;
+  user: ProfileResponse;
   isLoggedIn = false;
   isLoginFailed = false;
   errorMessage = '';

@@ -1,5 +1,5 @@
 import {DurationType} from "../../enums/duration-type.enums";
-import {UserResponse} from "./user-response";
+import {ProfileResponse} from "./profile-response";
 
 export interface AbsenceResponse {
   date: string;
@@ -7,5 +7,5 @@ export interface AbsenceResponse {
   durationType: DurationType;
   reason: string;
   isJustified: boolean;
-  student: UserResponse;
+  student: ProfileResponse;
 }

@@ -65,16 +65,23 @@
             </p>
           </div>
 
-          <form action="#" class="mt-8 grid grid-cols-6 gap-6">
+          <form [formGroup]="schoolForm" (ngSubmit)="onSubmit()" action="#" class="mt-8 grid grid-cols-6 gap-6">
             <div class="col-span-6">
               <label for="name" class="block text-sm font-medium text-gray-700"> School name </label>
 
               <input
+                formControlName="name"
                 type="text"
                 id="name"
                 name="name"
                 class="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
               />
+              <p
+                *ngIf="isFieldValid('name', 'required')"
+                class="mt-1 text-xs text-red-500"
+              >
+                Name is required
+              </p>
             </div>
 
             <div class="col-span-6">
@@ -84,6 +91,12 @@
                 id="type" formControlName="type">
                 <option *ngFor="let schoolType of schoolTypes" [value]="schoolType">{{ schoolType }}</option>
               </select>
+              <p
+                *ngIf="isFieldValid('type', 'required')"
+                class="mt-1 text-xs text-red-500"
+              >
+                Type is required
+              </p>
               </div>
 
             <div class="col-span-6">
@@ -112,6 +125,8 @@
 
             <div class="col-span-6 sm:flex sm:items-center sm:gap-4">
               <button
+                type="submit"
+                [disabled]="schoolForm.invalid"
                 class="inline-block shrink-0 rounded-md border border-blue-600 bg-blue-600 px-12 py-3 text-sm font-medium text-white transition hover:bg-transparent hover:text-blue-600 focus:outline-none focus:ring active:text-blue-500"
               >
                 Create an account

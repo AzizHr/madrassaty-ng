@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
-import {AbsentRequest} from "../../models/request/absent-request";
+import {AbsenceRequest} from "../../models/request/absence-request";
 import {AbsenceResponse} from "../../models/response/absence-response";
 
 @Injectable({
@@ -13,7 +13,7 @@ export class AbsenceService {
 
   api: string = "http://localhost:8080/api/absences";
 
-  public noteAbsentForAStudent(absentRequest: AbsentRequest): Observable<AbsenceResponse> {
+  public noteAbsentForAStudent(absentRequest: AbsenceRequest): Observable<AbsenceResponse> {
     return this.http.post<AbsenceResponse>(this.api, absentRequest);
   }
 

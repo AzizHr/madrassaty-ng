@@ -1,14 +1,15 @@
 import {SchoolType} from "../../enums/school-type.enums";
 import {YearRequest} from "../request/year-request";
 import {SpecialtyRequest} from "../request/specialty-request";
-import {UserResponse} from "./user-response";
+import {ProfileResponse} from "./profile-response";
 import {ClassRequest} from "../request/class-request";
 
 export interface SchoolResponse {
+  id: number;
   name: string;
   type: SchoolType;
   years: YearRequest[];
   specialties: SpecialtyRequest[];
-  managers: UserResponse[];
+  managers: ProfileResponse[];
   classes: ClassRequest[];
 }

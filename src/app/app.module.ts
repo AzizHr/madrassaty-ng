@@ -27,30 +27,42 @@ import {specialtyReducer} from "./store/reducers/specialty.reducers";
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { CreateSchoolComponent } from './components/auth/manager/manager-register/create-school/create-school.component';
-import { MDashboardComponent } from './components/manager-dashboard/m-dashboard/m-dashboard.component';
-import { MStudentsDashboardComponent } from './components/manager-dashboard/m-students-dashboard/m-students-dashboard.component';
-import { MTeachersDashboardComponent } from './components/manager-dashboard/m-teachers-dashboard/m-teachers-dashboard.component';
-import { MClassesDashboardComponent } from './components/manager-dashboard/m-classes-dashboard/m-classes-dashboard.component';
-import { MSubjectsDashboardComponent } from './components/manager-dashboard/m-subjects-dashboard/m-subjects-dashboard.component';
-import { MSpecialtiesDashboardComponent } from './components/manager-dashboard/m-specialties-dashboard/m-specialties-dashboard.component';
 import {FullCalendarModule} from "@fullcalendar/angular";
 import {SpecialtyEffects} from "./store/effects/specialty.effects";
-import { AddClassComponent } from './components/manager-dashboard/m-classes-dashboard/add-class/add-class.component';
-import { AddSpecialtyComponent } from './components/manager-dashboard/m-specialties-dashboard/add-specialty/add-specialty.component';
-import { AddSubjectComponent } from './components/manager-dashboard/m-subjects-dashboard/add-subject/add-subject.component';
-import { AssignASubjectToASpecialtyComponent } from './components/manager-dashboard/m-subjects-dashboard/assign-a-subject-to-a-specialty/assign-a-subject-to-a-specialty.component';
-import { RegisterATeacherComponent } from './components/manager-dashboard/m-teachers-dashboard/register-a-teacher/register-a-teacher.component';
-import { RegisterAStudentComponent } from './components/manager-dashboard/m-students-dashboard/register-a-student/register-a-student.component';
-import {
-  AssignATeacherToAClassComponent
-} from "./components/manager-dashboard/m-teachers-dashboard/assign-a-teacher-to-a-class/assign-a-teacher-to-a-class.component";
-import { TeacherDashboardComponent } from './components/teacher-dashboard/teacher-dashboard.component';
-import { NoteAbsentForAStudentComponent } from './components/teacher-dashboard/note-absent-for-a-student/note-absent-for-a-student.component';
 import {absenceReducer} from "./store/reducers/absence.reducers";
 import {AbsenceEffects} from "./store/effects/absence.effects";
 import { StudentDashboardComponent } from './components/student/student-dashboard/student-dashboard.component';
 import { ProfileComponent } from './components/student/student-dashboard/profile/profile.component';
 import { AbsenceComponent } from './components/student/student-dashboard/absence/absence.component';
+import { ClassroomComponent } from './components/student/student-dashboard/classroom/classroom.component';
+import { TeacherProfileComponent } from './components/teacher/teacher-dashboard/teacher-profile/teacher-profile.component';
+import { MyClassroomsComponent } from './components/teacher/teacher-dashboard/my-classrooms/my-classrooms.component';
+import {TeacherDashboardComponent} from "./components/teacher/teacher-dashboard/teacher-dashboard.component";
+import { MyClassroomDetailsComponent } from './components/teacher/teacher-dashboard/my-classrooms/my-classroom-details/my-classroom-details.component';
+import { MyStudentProfileComponent } from './components/teacher/teacher-dashboard/my-student-profile/my-student-profile.component';
+import { MainComponent } from './components/manager/manager-dashboard/main/main.component';
+import {AddClassComponent} from "./components/manager/manager-dashboard/classes/add-class/add-class.component";
+import {
+  AddSpecialtyComponent
+} from "./components/manager/manager-dashboard/specialties/add-specialty/add-specialty.component";
+import {AddSubjectComponent} from "./components/manager/manager-dashboard/subjects/add-subject/add-subject.component";
+import {
+  RegisterATeacherComponent
+} from "./components/manager/manager-dashboard/teachers/register-a-teacher/register-a-teacher.component";
+import {
+  RegisterAStudentComponent
+} from "./components/manager/manager-dashboard/students/register-a-student/register-a-student.component";
+import {ClassesComponent} from "./components/manager/manager-dashboard/classes/classes.component";
+import {StudentsComponent} from "./components/manager/manager-dashboard/students/students.component";
+import {TeachersComponent} from "./components/manager/manager-dashboard/teachers/teachers.component";
+import {SubjectsComponent} from "./components/manager/manager-dashboard/subjects/subjects.component";
+import {SpecialtiesComponent} from "./components/manager/manager-dashboard/specialties/specialties.component";
+import {ManagerDashboardComponent} from "./components/manager/manager-dashboard/manager-dashboard.component";
+import { SchoolYearsComponent } from './components/manager/manager-dashboard/school-years/school-years.component';
+import { StudentYearsComponent } from './components/manager/manager-dashboard/student-years/student-years.component';
+import {yearReducer} from "./store/reducers/year.reducers";
+import {YearEffects} from "./store/effects/year.effects";
+import { AddYearComponent } from './components/manager/manager-dashboard/school-years/add-year/add-year.component';
 
 @NgModule({
   declarations: [
@@ -63,24 +75,30 @@ import { AbsenceComponent } from './components/student/student-dashboard/absence
     SidebarComponent,
     FooterComponent,
     CreateSchoolComponent,
-    MDashboardComponent,
-    MStudentsDashboardComponent,
-    MTeachersDashboardComponent,
-    MClassesDashboardComponent,
-    MSubjectsDashboardComponent,
-    MSpecialtiesDashboardComponent,
     AddClassComponent,
     AddSpecialtyComponent,
     AddSubjectComponent,
-    AssignASubjectToASpecialtyComponent,
-    AssignATeacherToAClassComponent,
     RegisterATeacherComponent,
     RegisterAStudentComponent,
-    TeacherDashboardComponent,
-    NoteAbsentForAStudentComponent,
     StudentDashboardComponent,
     ProfileComponent,
-    AbsenceComponent
+    AbsenceComponent,
+    ClassroomComponent,
+    TeacherProfileComponent,
+    MyClassroomsComponent,
+      TeacherDashboardComponent,
+      MyClassroomDetailsComponent,
+      MyStudentProfileComponent,
+      MainComponent,
+    ClassesComponent,
+    StudentsComponent,
+    TeachersComponent,
+    SubjectsComponent,
+    SpecialtiesComponent,
+    ManagerDashboardComponent,
+    SchoolYearsComponent,
+    StudentYearsComponent,
+    AddYearComponent
   ],
   imports: [
     FullCalendarModule,
@@ -95,8 +113,9 @@ import { AbsenceComponent } from './components/student/student-dashboard/absence
     StoreModule.forFeature('students', studentReducer),
     StoreModule.forFeature('teachers', teacherReducer),
     StoreModule.forFeature('absences', absenceReducer),
+    StoreModule.forFeature('years', yearReducer),
     StoreModule.forFeature('school', schoolReducer),
-    EffectsModule.forFeature([ClassEffects, SpecialtyEffects, SubjectEffects, StudentEffects, TeacherEffects, SchoolEffects, AbsenceEffects]),
+    EffectsModule.forFeature([ClassEffects, SpecialtyEffects, SubjectEffects, StudentEffects, TeacherEffects, SchoolEffects, AbsenceEffects, YearEffects]),
     StoreDevtoolsModule.instrument({
       maxAge: 25, // Retains last 25 states
       // logOnly: environment.production, // Restrict extension to log-only mode

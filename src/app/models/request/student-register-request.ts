@@ -8,7 +8,7 @@ export interface StudentRegisterRequest {
   status?: StatusType;
   city?: string;
   address?: string;
-  image: string;
+  image: File;
   specialtyId: number;
   classId: number;
 }

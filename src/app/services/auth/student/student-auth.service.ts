@@ -13,7 +13,7 @@ import {StudentRegisterRequest} from "../../../models/request/student-register-r
 })
 export class StudentAuthService {
 
-  private MANAGER_AUTH_API: string = 'http://localhost:8080/api/student';
+  private MANAGER_AUTH_API: string = 'http://localhost:8080/api/auth/student';
   private httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
@@ -31,8 +31,20 @@ export class StudentAuthService {
   }
 
   public register(studentRegisterRequest: StudentRegisterRequest): Observable<AuthResponse> {
+    const formData = new FormData();
+    formData.append('firstname', studentRegisterRequest.firstname);
+    formData.append('lastname', studentRegisterRequest.lastname);
+    formData.append('email', studentRegisterRequest.email);
+    formData.append('password', studentRegisterRequest.password);
+    if (studentRegisterRequest.image instanceof File) {
+      formData.append('image', studentRegisterRequest.image, studentRegisterRequest.image.name);
+    }
+    formData.append('city', studentRegisterRequest.city);
+    formData.append('address', studentRegisterRequest.address);
+    formData.append('classId', String(studentRegisterRequest.classId));
+    formData.append('specialtyId', String(studentRegisterRequest.specialtyId));
     return this.http.post<AuthResponse>(
-      `${this.MANAGER_AUTH_API}/register`, studentRegisterRequest, this.httpOptions
+      `${this.MANAGER_AUTH_API}/register`, formData
     )
   }
 

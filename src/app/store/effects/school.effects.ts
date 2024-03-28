@@ -25,6 +25,8 @@ export class SchoolEffects {
               timer: 1500
             });
             console.log(schoolResponse);
+            localStorage.setItem('schoolId', String(schoolResponse.id));
+            this.router.navigateByUrl("manager/register")
             return SchoolActions.addSchoolSuccess({ schoolResponse });
           }),
           catchError((error) => {

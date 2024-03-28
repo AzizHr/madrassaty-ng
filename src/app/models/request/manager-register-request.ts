@@ -8,6 +8,6 @@ export interface ManagerRegisterRequest {
   status?: StatusType;
   city?: string;
   address?: string;
-  image: string;
+  image: File;
   schoolId: number;
 }

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import {RoleCheckerService} from "../../services/auth/role-checker/role-checker.service";
 import {JwtStorageService} from "../../services/jwt/jwt-storage.service";
-import {UserResponse} from "../../models/response/user-response";
+import {ProfileResponse} from "../../models/response/profile-response";
 
 @Component({
   selector: 'app-navbar',
@@ -10,7 +10,7 @@ import {UserResponse} from "../../models/response/user-response";
 })
 export class NavbarComponent {
 
-  user: UserResponse;
+  user: ProfileResponse;
   isLoggedIn = false;
   isManager = false;
   isStudent = false;

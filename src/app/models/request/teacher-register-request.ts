@@ -8,6 +8,6 @@ export interface TeacherRegisterRequest {
   status?: StatusType;
   city?: string;
   address?: string;
-  image: string;
+  image: File;
   subjectId: number;
 }
