@@ -5,7 +5,7 @@ import {ProfileResponse} from "./profile-response";
 import {ClassRequest} from "../request/class-request";
 
 export interface SchoolResponse {
-  id: number;
+  id: string;
   name: string;
   type: SchoolType;
   years: YearRequest[];

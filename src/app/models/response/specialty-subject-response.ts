@@ -1,4 +1,4 @@
 export interface SpecialtySubjectResponse {
-  specialtyId: number;
-  subjectId: number;
+  specialtyId: string;
+  subjectId: string;
 }

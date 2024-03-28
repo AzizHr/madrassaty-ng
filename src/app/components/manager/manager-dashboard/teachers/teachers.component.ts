@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import {Observable} from "rxjs";
-import {ProfileResponse} from "../../../../models/response/profile-response";
 import {select, Store} from "@ngrx/store";
 import {AppState} from "../../../../state/app.state";
 import {Router} from "@angular/router";
@@ -12,7 +11,7 @@ import {classesSelector} from "../../../../store/selectors/class.selectors";
 import {loadClassesBySchoolIdWithNoPagination} from "../../../../store/actions/class.actions";
 import {TeacherClassRequest} from "../../../../models/request/teacher-class-request";
 import {Page} from "../../../../models/page/page";
-import {UserResponse} from "../../../../models/response/user-response";
+import {TeacherResponse} from "../../../../models/response/teacher-response";
 
 @Component({
   selector: 'app-teachers',
@@ -21,9 +20,9 @@ import {UserResponse} from "../../../../models/response/user-response";
 })
 export class TeachersComponent {
   isLoading$: Observable<boolean>;
-  teacherPage$: Observable<Page<UserResponse>>;
+  teacherPage$: Observable<Page<TeacherResponse>>;
   error$: Observable<string | null>;
-  teachers: User[] = [];
+  teachers: TeacherResponse[] = [];
 
   currentPage: number = 0;
   totalElements: number = 0;

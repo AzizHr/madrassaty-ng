@@ -1,7 +1,7 @@
 import {SchoolRequest} from "../request/school-request";
 
 export interface YearResponse {
-  id: number;
+  id: string;
   year: string;
   school: SchoolRequest;
 }

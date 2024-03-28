@@ -1,4 +1,4 @@
 export interface TeacherClassResponse {
-  teacherId: number;
-  classId: number;
+  teacherId: string;
+  classId: string;
 }
