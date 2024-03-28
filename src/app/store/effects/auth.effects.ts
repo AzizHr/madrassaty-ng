@@ -4,7 +4,6 @@ import { of } from 'rxjs';
 import { catchError, map, mergeMap } from 'rxjs/operators';
 import * as AuthActions from '../actions/auth.actions';
 import {Router} from "@angular/router";
-import Swal from "sweetalert2";
 import {ManagerAuthService} from "../../services/auth/manager/manager-auth.service";
 import {StudentAuthService} from "../../services/auth/student/student-auth.service";
 import {TeacherAuthService} from "../../services/auth/teacher/teacher-auth.service";

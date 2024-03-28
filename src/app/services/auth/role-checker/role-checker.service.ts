@@ -1,31 +1,47 @@
 import {Injectable} from '@angular/core';
 import {JwtStorageService} from "../../jwt/jwt-storage.service";
 import {Role} from "../../../enums/role.enums";
+import {ManagerResponse} from "../../../models/response/manager-response";
+import {StudentResponse} from "../../../models/response/student-response";
+import {TeacherResponse} from "../../../models/response/teacher-response";
+import {select, Store} from "@ngrx/store";
+import {AppState} from "../../../state/app.state";
+import {authSelector} from "../../../store/selectors/auth.selectors";
+import * as AuthActions from "../../../store/actions/auth.actions";
+import {Observable} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
 })
 export class RoleCheckerService {
 
-  constructor(private jwtStorageService: JwtStorageService) {}
+  private auth$: Observable<ManagerResponse | StudentResponse | TeacherResponse>;
+  private auth: ManagerResponse | StudentResponse | TeacherResponse;
+
+  constructor(private jwtStorageService: JwtStorageService, private store: Store<AppState>) {
+    this.auth$ = this.store.pipe(select(authSelector))
+  }
 
   public isLoggedIn(): boolean {
-    return !!(this.jwtStorageService.getToken() && this.jwtStorageService.getUser());
+    return !!this.jwtStorageService.getToken();
   }
 
   isManager(): boolean {
-    const user = this.jwtStorageService.getUser();
-    return user && user.role === Role.MANAGER;
+    this.store.dispatch(AuthActions.getLoggedInManager());
+    this.auth$.subscribe(auth => this.auth = auth);
+    return this.auth && this.auth.role === Role.MANAGER;
   }
 
   isTeacher(): boolean {
-    const user = this.jwtStorageService.getUser();
-    return user && user.role === Role.TEACHER;
+    this.store.dispatch(AuthActions.getLoggedInTeacher());
+    this.auth$.subscribe(auth => this.auth = auth);
+    return this.auth && this.auth.role === Role.TEACHER;
   }
 
   isStudent(): boolean {
-    const user = this.jwtStorageService.getUser();
-    return user && user.role === Role.STUDENT;
+    this.store.dispatch(AuthActions.getLoggedInStudent());
+    this.auth$.subscribe(auth => this.auth = auth);
+    return this.auth && this.auth.role === Role.STUDENT;
   }
 
 }

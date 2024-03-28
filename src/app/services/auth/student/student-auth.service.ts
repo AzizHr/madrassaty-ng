@@ -49,7 +49,7 @@ export class StudentAuthService {
     )
   }
 
-  logout(): void {
+  public logout(): void {
     localStorage.removeItem('user');
     window.location.reload();
     this.router.navigateByUrl('/student/login');

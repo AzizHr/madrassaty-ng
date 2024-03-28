@@ -44,7 +44,7 @@ export class ManagerAuthService {
     )
   }
 
-  logout(): void {
+  public logout(): void {
     localStorage.removeItem('user');
     window.location.reload();
     this.router.navigateByUrl('/manager/login');
