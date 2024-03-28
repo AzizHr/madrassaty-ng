@@ -5,6 +5,7 @@ import {Router} from "@angular/router";
 import {LoginRequest} from "../../../models/request/login-request";
 import {AuthResponse} from "../../../models/response/auth-response.models";
 import {ManagerRegisterRequest} from "../../../models/request/manager-register-request";
+import {ManagerResponse} from "../../../models/response/manager-response";
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +13,8 @@ import {ManagerRegisterRequest} from "../../../models/request/manager-register-r
 export class ManagerAuthService {
 
   private MANAGER_AUTH_API: string = 'http://localhost:8080/api/auth/manager';
+  private MANAGER_PROFILE: string = 'http://localhost:8080/api/manager';
+
   private httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
@@ -47,4 +50,7 @@ export class ManagerAuthService {
     this.router.navigateByUrl('/manager/login');
   }
 
+  public getLoggedInManager(): Observable<ManagerResponse> {
+    return this.http.get<ManagerResponse>(this.MANAGER_PROFILE)
+  }
 }
