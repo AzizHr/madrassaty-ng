@@ -22,7 +22,3 @@ export const loadStudentsByClassIdFailure = createAction("[Student] Load Student
 export const loadStudentsByClassIdWithNoPagination = createAction("[Student] Load Students By Class Id With No Pagination", props<{ classId: number }>());
 export const loadStudentsByClassIdWithNoPaginationSuccess = createAction("[Student] Load Students By Class Id With No Pagination Success", props<{ studentPage: Page<ProfileResponse> }>());
 export const loadStudentsByClassIdWithNoPaginationFailure = createAction("[Student] Load Students By Class Id With No Pagination Failure", props<{ error: string }>());
-
-export const getLoggedInStudent = createAction("[Student] Get Logged In Student");
-export const getLoggedInStudentSuccess = createAction("[Student] Get Logged In Student Success", props<{ auth: StudentResponse }>());
-export const getLoggedInStudentFailure = createAction("[Student] Get Logged In Student Failure", props<{ error: string }>());

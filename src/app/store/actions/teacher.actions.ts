@@ -21,7 +21,3 @@ export const loadTeachersByClassIdFailure = createAction("[Teacher] Load Teacher
 export const assignATeacherToAClass = createAction("[Subject] Assign A Teacher T A Class", props<{ teacherClassRequest: TeacherClassRequest }>());
 export const assignATeacherToAClassSuccess = createAction("[Subject] Assign A Teacher T A Class Success", props<{ teacherClassResponse: TeacherClassResponse }>());
 export const assignATeacherToAClassFailure = createAction("[Subject] Assign A Teacher T A Class Failure", props<{ error: string }>());
-
-export const getLoggedInTeacher = createAction("[Teacher] Get Logged In Teacher");
-export const getLoggedInTeacherSuccess = createAction("[Teacher] Get Logged In Teacher Success", props<{ auth: TeacherResponse }>());
-export const getLoggedInTeacherFailure = createAction("[Teacher] Get Logged In Teacher Failure", props<{ error: string }>());
