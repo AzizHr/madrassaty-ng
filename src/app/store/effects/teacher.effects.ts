@@ -5,14 +5,14 @@ import { catchError, map, mergeMap } from 'rxjs/operators';
 import * as TeacherActions from '../actions/teacher.actions';
 import {Router} from "@angular/router";
 import {TeacherService} from "../../services/teacher/teacher.service";
+import * as UserActions from "../actions/user.actions";
 import Swal from "sweetalert2";
 
 @Injectable()
 export class TeacherEffects {
   constructor(private actions$: Actions, private teacherService: TeacherService, private router: Router) {}
 
-
-  loadTeachersByClassId$ = createEffect(() =>
+  getLoggedInTeacher$ = createEffect(() =>
     this.actions$.pipe(
       ofType(TeacherActions.loadTeachersByClassId),
       mergeMap((action) =>
