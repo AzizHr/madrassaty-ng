@@ -66,6 +66,8 @@ import { AddYearComponent } from './components/manager/manager-dashboard/school-
 import { StudentLoginComponent } from './components/auth/student/student-login/student-login.component';
 import { TeacherLoginComponent } from './components/auth/teacher/teacher-login/teacher-login.component';
 import {AuthInterceptorProvider} from "./interceptors/auth.interceptor";
+import {authReducer} from "./store/reducers/auth.reducers";
+import {AuthEffects} from "./store/effects/auth.effects";
 
 @NgModule({
   declarations: [
@@ -120,7 +122,8 @@ import {AuthInterceptorProvider} from "./interceptors/auth.interceptor";
     StoreModule.forFeature('absences', absenceReducer),
     StoreModule.forFeature('years', yearReducer),
     StoreModule.forFeature('school', schoolReducer),
-    EffectsModule.forFeature([ClassEffects, SpecialtyEffects, SubjectEffects, StudentEffects, TeacherEffects, SchoolEffects, AbsenceEffects, YearEffects]),
+    StoreModule.forFeature('auth', authReducer),
+    EffectsModule.forFeature([ClassEffects, SpecialtyEffects, SubjectEffects, StudentEffects, TeacherEffects, SchoolEffects, AbsenceEffects, YearEffects, AuthEffects]),
     StoreDevtoolsModule.instrument({
       maxAge: 25, // Retains last 25 states
       // logOnly: environment.production, // Restrict extension to log-only mode
