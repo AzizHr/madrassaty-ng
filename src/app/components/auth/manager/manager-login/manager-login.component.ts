@@ -1,8 +1,6 @@
 import { Component } from '@angular/core';
-import {ProfileResponse} from "../../../../models/response/profile-response";
 import {FormBuilder, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
-import {ManagerAuthService} from "../../../../services/auth/manager/manager-auth.service";
 import {JwtStorageService} from "../../../../services/jwt/jwt-storage.service";
 import {LoginRequest} from "../../../../models/request/login-request";
 import Swal from "sweetalert2";
