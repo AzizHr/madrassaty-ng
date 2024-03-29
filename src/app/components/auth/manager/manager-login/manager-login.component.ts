@@ -55,6 +55,7 @@ export class ManagerLoginComponent {
         this.isLoginFailed = false;
         this.isLoggedIn = true;
         setTimeout(() => {
+          this.router.navigateByUrl("/manager/dashboard")
         }, 1500);
       },
       err => {
