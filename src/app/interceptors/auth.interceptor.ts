@@ -9,7 +9,7 @@ export class AuthInterceptor implements HttpInterceptor {
     constructor(private jwtStorageService: JwtStorageService) {}
 
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-        if (request.url.endsWith('/login') || request.url.endsWith('/register')) {
+        if (request.url.endsWith('/login') || request.url.endsWith('/register') || request.url.endsWith('/schools')) {
             return next.handle(request);
         }
         const modifiedRequest = request.clone({
