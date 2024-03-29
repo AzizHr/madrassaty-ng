@@ -65,6 +65,7 @@ import {YearEffects} from "./store/effects/year.effects";
 import { AddYearComponent } from './components/manager/manager-dashboard/school-years/add-year/add-year.component';
 import { StudentLoginComponent } from './components/auth/student/student-login/student-login.component';
 import { TeacherLoginComponent } from './components/auth/teacher/teacher-login/teacher-login.component';
+import {AuthInterceptorProvider} from "./interceptors/auth.interceptor";
 
 @NgModule({
   declarations: [
@@ -128,7 +129,7 @@ import { TeacherLoginComponent } from './components/auth/teacher/teacher-login/t
     ReactiveFormsModule,
     FormsModule
   ],
-  providers: [],
+  providers: [AuthInterceptorProvider],
   bootstrap: [AppComponent]
 })
 export class AppModule {
