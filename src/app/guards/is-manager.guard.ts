@@ -5,7 +5,7 @@ import {RoleCheckerService} from "../services/auth/role-checker/role-checker.ser
 @Injectable({
   providedIn: 'root'
 })
-export class ManagerAuthGuard implements CanActivate {
+export class IsManagerGuard implements CanActivate {
 
   constructor(private roleCheckerService: RoleCheckerService) {}
 
