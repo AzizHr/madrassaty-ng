@@ -43,6 +43,18 @@
       >
         Password is required
       </p>
+      <p
+        *ngIf="isFieldValid('password', 'minlength')"
+        class="mt-1 text-xs text-red-500"
+      >
+        Password must be at least 6 characters long
+      </p>
+      <p
+        *ngIf="isFieldValid('password', 'maxlength')"
+        class="mt-1 text-xs text-red-500"
+      >
+        Password must be at most 15 characters long
+      </p>
     </div>
 
     <div class="mt-6">
