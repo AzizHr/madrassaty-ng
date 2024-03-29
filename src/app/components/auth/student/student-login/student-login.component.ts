@@ -53,6 +53,7 @@ export class StudentLoginComponent {
         this.isLoginFailed = false;
         this.isLoggedIn = true;
         setTimeout(() => {
+          this.router.navigateByUrl("/student/dashboard")
         }, 1500);
       },
       err => {
