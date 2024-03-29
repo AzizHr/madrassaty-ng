@@ -19,7 +19,7 @@ export class TeacherAuthService {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
 
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(private http: HttpClient, private router: Router, private jwtStorageService: JwtStorageService) {}
 
   public authenticate(loginRequest: LoginRequest): Observable<AuthResponse> {
     return this.http.post<AuthResponse>(
@@ -45,7 +45,7 @@ export class TeacherAuthService {
   }
 
   public logout(): void {
-    localStorage.removeItem('accessToken');
+    this.jwtStorageService.removeAccessToken()
     window.location.reload();
     this.router.navigateByUrl('/teacher/login');
   }
