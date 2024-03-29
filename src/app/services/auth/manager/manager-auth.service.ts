@@ -7,6 +7,7 @@ import {AuthResponse} from "../../../models/response/auth-response.models";
 import {ManagerRegisterRequest} from "../../../models/request/manager-register-request";
 import {ManagerProfileResponse} from "../../../models/response/manager-profile-response";
 import {RegisterResponse} from "../../../models/response/register-response";
+import {JwtStorageService} from "../../jwt/jwt-storage.service";
 
 @Injectable({
   providedIn: 'root'
@@ -20,7 +21,7 @@ export class ManagerAuthService {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
 
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(private http: HttpClient, private router: Router, private jwtStorageService: JwtStorageService) {}
 
   public authenticate(loginRequest: LoginRequest): Observable<AuthResponse> {
     return this.http.post<AuthResponse>(
@@ -46,7 +47,7 @@ export class ManagerAuthService {
   }
 
   public logout(): void {
-    localStorage.removeItem('accessToken');
+    this.jwtStorageService.removeAccessToken()
     window.location.reload();
     this.router.navigateByUrl('/manager/login');
   }
