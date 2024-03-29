@@ -6,6 +6,7 @@ import {LoginRequest} from "../../../../models/request/login-request";
 import Swal from "sweetalert2";
 import {RoleCheckerService} from "../../../../services/auth/role-checker/role-checker.service";
 import {TeacherAuthService} from "../../../../services/auth/teacher/teacher-auth.service";
+import {ManagerAuthService} from "../../../../services/auth/manager/manager-auth.service";
 
 @Component({
   selector: 'app-manager-login',
@@ -26,7 +27,7 @@ export class ManagerLoginComponent {
 
   constructor(private formBuilder: FormBuilder,
               private router: Router,
-              private managerAuthService: TeacherAuthService,
+              private managerAuthService: ManagerAuthService,
               private jwtStorageService: JwtStorageService,
               private roleCheckerService: RoleCheckerService) {}
 
