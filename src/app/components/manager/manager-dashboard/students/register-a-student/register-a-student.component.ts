@@ -36,13 +36,13 @@ export class RegisterAStudentComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.store.dispatch(loadSpecialtiesBySchoolIdWithNoPagination({ schoolId: 1 }));
+    this.store.dispatch(loadSpecialtiesBySchoolIdWithNoPagination({ schoolId: 'g' }));
     this.specialties$.subscribe((data) => {
       this.specialties = data.content;
       console.log(data.content)
     })
 
-    this.store.dispatch(loadClassesBySchoolIdWithNoPagination({ schoolId: 1 }));
+    this.store.dispatch(loadClassesBySchoolIdWithNoPagination({ schoolId: '2' }));
     this.classes$.subscribe((data) => {
       this.classes = data.content;
       console.log(data.content)

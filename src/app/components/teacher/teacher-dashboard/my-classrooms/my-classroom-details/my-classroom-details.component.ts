@@ -35,7 +35,7 @@ export class MyClassroomDetailsComponent {
   }
 
   ngOnInit(): void {
-    this.store.dispatch(loadClassesByTeacherIdWithNoPagination({ teacherId: 1 }));
+    this.store.dispatch(loadClassesByTeacherIdWithNoPagination({ teacherId: 'h' }));
     this.classes$.subscribe((data) => {
       this.classes = data.content;
       console.log(data.content)

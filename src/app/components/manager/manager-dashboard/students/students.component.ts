@@ -36,7 +36,7 @@ export class StudentsComponent {
   }
 
   all(p: number, s: number) {
-    this.store.dispatch(StudentActions.loadStudentsBySchoolId({ schoolId: 1, page: p, size: s }));
+    this.store.dispatch(StudentActions.loadStudentsBySchoolId({ schoolId: 'h', page: p, size: s }));
     this.students$.subscribe(data => {
       this.students = data.content;
       this.totalElements = data.totalElements;

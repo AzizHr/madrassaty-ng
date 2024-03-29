@@ -34,7 +34,7 @@ export class AbsenceComponent {
   }
 
   ngOnInit(): void {
-    this.store.dispatch(AbsenceActions.loadAbsencesByStudentId({ studentId: 2 }));
+    this.store.dispatch(AbsenceActions.loadAbsencesByStudentId({ studentId: 'k' }));
     this.absences$.subscribe(absences => {
       this.absences = absences;
       const events = this.absences.map((absence: AbsenceResponse) => ({

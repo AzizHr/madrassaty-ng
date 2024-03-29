@@ -31,7 +31,7 @@ export class RegisterATeacherComponent {
   }
 
   ngOnInit(): void {
-    this.store.dispatch(loadSubjectsBySchoolIdWithNoPagination({ schoolId: 1 }));
+    this.store.dispatch(loadSubjectsBySchoolIdWithNoPagination({ schoolId: '2' }));
     this.subjectPage$.subscribe((data) => {
       this.subjects = data.content;
       console.log(data.content)

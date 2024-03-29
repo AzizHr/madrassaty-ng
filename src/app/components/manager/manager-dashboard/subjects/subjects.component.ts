@@ -53,7 +53,7 @@ export class SubjectsComponent implements OnInit {
 
   ngOnInit(): void {
     this.all(this.currentPage, this.limit);
-    this.store.dispatch(loadSpecialtiesBySchoolIdWithNoPagination({ schoolId: 1 }));
+    this.store.dispatch(loadSpecialtiesBySchoolIdWithNoPagination({ schoolId: '2' }));
     this.specialties$.subscribe((data) => {
       this.specialties = data.content;
       console.log(data.content);
@@ -61,7 +61,7 @@ export class SubjectsComponent implements OnInit {
   }
 
   all(p: number, s: number): void {
-    this.store.dispatch(SubjectActions.loadSubjectsBySchoolId({ schoolId: 1, page: p, size: s }));
+    this.store.dispatch(SubjectActions.loadSubjectsBySchoolId({ schoolId: '2', page: p, size: s }));
     this.subjectPage$.subscribe(data => {
       this.subjects = data.content;
       this.totalElements = data.totalElements;
@@ -101,7 +101,7 @@ export class SubjectsComponent implements OnInit {
         this.specialtySubjectForm.get(field)?.touched || this.isSubmitted);
   }
 
-  onClick(id: number) {
+  onClick(id: string) {
     this.specialtySubjectForm = this.formBuilder.group({
       specialtyId: [null, [Validators.required]],
       subjectId: [id]

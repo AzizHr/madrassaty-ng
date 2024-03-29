@@ -36,7 +36,7 @@ export class SpecialtiesComponent {
   }
 
   all(p: number, s: number) {
-    this.store.dispatch(SpecialtyActions.loadSpecialtiesBySchoolId({ schoolId: 1, page: p, size: s }));
+    this.store.dispatch(SpecialtyActions.loadSpecialtiesBySchoolId({ schoolId: '2', page: p, size: s }));
     this.specialties$.subscribe(data => {
       console.log(data)
       this.specialties = data.content;

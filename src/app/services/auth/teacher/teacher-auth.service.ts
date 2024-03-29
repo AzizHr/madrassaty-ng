@@ -45,7 +45,7 @@ export class TeacherAuthService {
   }
 
   public logout(): void {
-    localStorage.removeItem('user');
+    localStorage.removeItem('accessToken');
     window.location.reload();
     this.router.navigateByUrl('/teacher/login');
   }

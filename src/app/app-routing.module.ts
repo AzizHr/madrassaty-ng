@@ -27,6 +27,11 @@ import {ClassesComponent} from "./components/manager/manager-dashboard/classes/c
 import {SubjectsComponent} from "./components/manager/manager-dashboard/subjects/subjects.component";
 import {SpecialtiesComponent} from "./components/manager/manager-dashboard/specialties/specialties.component";
 import {SchoolYearsComponent} from "./components/manager/manager-dashboard/school-years/school-years.component";
+import {TeacherLoginComponent} from "./components/auth/teacher/teacher-login/teacher-login.component";
+import {
+  RegisterATeacherComponent
+} from "./components/manager/manager-dashboard/teachers/register-a-teacher/register-a-teacher.component";
+import {StudentLoginComponent} from "./components/auth/student/student-login/student-login.component";
 
 const routes: Routes = [
   { path: "home", component: HomeComponent },
@@ -41,8 +46,7 @@ const routes: Routes = [
       {path: "specialties", component: SpecialtiesComponent},
           {path: "years", component: SchoolYearsComponent}
     ] },
-  { path: "teacher/login", component: ManagerLoginComponent },
-  { path: "teacher/register", component: ManagerRegisterComponent },
+  { path: "teacher/login", component: TeacherLoginComponent },
   { path: "teacher/dashboard", component: TeacherDashboardComponent, children: [
       {path: "classrooms", component: MyClassroomsComponent},
       {path: "profile", component: TeacherProfileComponent},
@@ -50,8 +54,7 @@ const routes: Routes = [
       {path: "students/profile/:id", component: MyStudentProfileComponent},
     ] },
   { path: "school/register", component: CreateSchoolComponent },
-  { path: "student/login", component: ManagerLoginComponent },
-  { path: "student/register", component: ManagerRegisterComponent },
+  { path: "student/login", component: StudentLoginComponent },
   { path: "student/dashboard", component: StudentDashboardComponent, children: [
     {path: "absence", component: AbsenceComponent},
     {path: "profile", component: ProfileComponent},

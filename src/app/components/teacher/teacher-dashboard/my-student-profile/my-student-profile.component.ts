@@ -33,7 +33,7 @@ export class MyStudentProfileComponent {
   }
 
   ngOnInit(): void {
-    this.store.dispatch(AbsenceActions.loadAbsencesByStudentId({ studentId: 2 }));
+    this.store.dispatch(AbsenceActions.loadAbsencesByStudentId({ studentId: 'u' }));
     this.absences$.subscribe(absences => {
       this.absences = absences;
       const events = this.absences.map((absence: AbsenceResponse) => ({

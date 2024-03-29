@@ -40,7 +40,7 @@ export class TeachersComponent {
 
   ngOnInit(): void {
     this.all(this.currentPage, this.limit);
-    this.store.dispatch(loadClassesBySchoolIdWithNoPagination({ schoolId: 1 }));
+    this.store.dispatch(loadClassesBySchoolIdWithNoPagination({ schoolId: 'j' }));
     this.classes$.subscribe((data) => {
       this.classes = data.content;
       console.log(data.content)
@@ -48,7 +48,7 @@ export class TeachersComponent {
   }
 
   all(p: number, s: number) {
-    this.store.dispatch(TeacherActions.loadTeachersBySchoolId({ schoolId: 1, page: p, size: s }));
+    this.store.dispatch(TeacherActions.loadTeachersBySchoolId({ schoolId: 'g', page: p, size: s }));
     this.teacherPage$.subscribe(data => {
       this.teachers = data.content;
       this.totalElements = data.totalElements;
@@ -99,7 +99,7 @@ export class TeachersComponent {
         this.teacherClassForm.get(field)?.touched || this.isSubmitted);
   }
 
-  onClick(id: number) {
+  onClick(id: string) {
     this.teacherClassForm = this.formBuilder.group({
       teacherId: [id],
       classId: [null, [Validators.required]]

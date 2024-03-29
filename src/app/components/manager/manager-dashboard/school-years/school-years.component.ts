@@ -27,7 +27,7 @@ export class SchoolYearsComponent {
   }
 
   ngOnInit(): void {
-    this.store.dispatch(YearActions.loadYearsBySchoolId({ schoolId: 1 }));
+    this.store.dispatch(YearActions.loadYearsBySchoolId({ schoolId: '2' }));
     this.years$.subscribe((data) => {
       this.years = data;
       console.log(data);

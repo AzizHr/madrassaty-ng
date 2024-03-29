@@ -6,7 +6,7 @@ import {AuthResponse} from "../../models/response/auth-response.models";
 })
 export class JwtStorageService {
 
-  private ACCESS_TOKEN_KEY: string = 'access_token';
+  private ACCESS_TOKEN_KEY: string = 'accessToken';
 
   constructor() {}
 

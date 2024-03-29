@@ -36,7 +36,7 @@ export class ClassesComponent {
   }
 
   all(p: number, s: number) {
-    this.store.dispatch(ClassActions.loadClassesBySchoolId({ schoolId: 1, page: p, size: s }));
+    this.store.dispatch(ClassActions.loadClassesBySchoolId({ schoolId: 'jhj', page: p, size: s }));
     this.classes$.subscribe(data => {
       this.classes = data.content;
       this.totalElements = data.totalElements;

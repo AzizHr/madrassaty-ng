@@ -59,7 +59,7 @@ export class MyClassroomsComponent {
   }
 
   all(p: number, s: number) {
-    this.store.dispatch(ClassActions.loadClassesByTeacherId({ teacherId: 3, page: p, size: s }));
+    this.store.dispatch(ClassActions.loadClassesByTeacherId({ teacherId: 'j', page: p, size: s }));
     this.classes$.subscribe(data => {
       this.classes = data.content;
       this.totalElements = data.totalElements;
